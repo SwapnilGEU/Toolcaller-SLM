@@ -1,0 +1,45 @@
+{
+  "total_examples": 60000,
+  "unique_exact_records": 59625,
+  "exact_duplicate_records": 375,
+  "invalid_tool_json": 0,
+  "invalid_answer_json": 0,
+  "missing_queries": 0,
+  "avg_query_length": 111.89315,
+  "median_query_length": 100.0,
+  "max_query_length": 1330,
+  "avg_available_tools": 2.8145,
+  "avg_tool_calls": 1.66685,
+  "max_tool_calls": 52,
+  "tokenizer": "Qwen/Qwen2.5-0.5B-Instruct",
+  "max_seq_len": 1280,
+  "issue_counts": {
+    "missing_required": 558,
+    "type_mismatch": 1245
+  },
+  "call_patterns": {
+    "single": 28461,
+    "multi_distinct_tools": 18972,
+    "parallel_same_tool": 11091,
+    "mixed": 1476
+  },
+  "token_percentiles": {
+    "0.5": 363.0,
+    "0.9": 695.0,
+    "0.95": 825.0,
+    "0.99": 1087.0
+  },
+  "cleaning_steps": {
+    "start": 60000,
+    "drop exact duplicates": 59625,
+    "drop hard validation issues": 59071,
+    "drop > 1280 tokens": 58854
+  },
+  "split_seed": 42,
+  "split_sizes": {
+    "sft_train": 45855,
+    "dpo_pool": 8870,
+    "test": 2937,
+    "sft_val": 1192
+  }
+}

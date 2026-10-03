@@ -1,0 +1,14 @@
+{
+  "raw_examples": 60000,
+  "clean_examples": 58820,
+  "removed_examples": 1180,
+  "exact_duplicates_removed": 375,
+  "hard_validation_examples_removed": 805,
+  "examples_with_soft_type_mismatch": 1245,
+  "issue_counts": {
+    "missing_required": 766,
+    "duplicate_tool_name": 286,
+    "type_mismatch": 2752
+  },
+  "retention_rate": 0.9803333333333333
+}
