@@ -19,9 +19,9 @@
   "split_seed": 42,
   "split_sizes": {
     "test": 2929,
-    "dpo_pool": 8811,
-    "sft_val": 1165,
-    "sft_train": 45715
+    "dpo_pool": 5863,
+    "sft_val": 1170,
+    "sft_train": 48658
   },
   "evidence": {
     "naive_test_size": 3000,
