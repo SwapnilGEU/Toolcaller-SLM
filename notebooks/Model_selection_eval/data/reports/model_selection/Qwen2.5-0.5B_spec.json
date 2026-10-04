@@ -1,0 +1,10 @@
+{
+  "model": "Qwen2.5-0.5B",
+  "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+  "params_millions": 494,
+  "context_length": 32768,
+  "dtype": "torch.bfloat16",
+  "peak_vram_gb": 1.38,
+  "license": "Apache-2.0",
+  "run_config": "7bb5713461ed"
+}

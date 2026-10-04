@@ -1,0 +1,19 @@
+{
+  "created_utc": "2026-10-04T07:06:52+00:00",
+  "source": "data\\splits\\test.jsonl",
+  "subset_seed": 42,
+  "files": {
+    "test_v1.jsonl": {
+      "sha256": "d5dc543e12d04caf3ace747bf81b1c7cdfc6d10adbb7e37eed77f309e95e734c",
+      "n": 2929
+    },
+    "test_v1_1k.jsonl": {
+      "sha256": "1613c167e9cc1e5ce839ccebd0586a9cbd222a968f38dc896e35e999639e6a38",
+      "n": 1000
+    },
+    "general_prompts_v1.jsonl": {
+      "sha256": "3d50f6c27adb01c29a88aeaddd5b6da89df45bb4fa5fbf3d3522b005414b3458",
+      "n": 20
+    }
+  }
+}

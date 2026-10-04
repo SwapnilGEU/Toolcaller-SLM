@@ -1,0 +1,168 @@
+{
+  "run_name": "base_qwen2.5-0.5b",
+  "run_config": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "benchmark": "test_v1",
+    "benchmark_sha256": "d5dc543e12d04caf3ace747bf81b1c7cdfc6d10adbb7e37eed77f309e95e734c",
+    "prompt_version": "v1",
+    "max_new_tokens": 512,
+    "decoding": "greedy"
+  },
+  "n": 2929,
+  "summary": {
+    "exact_match": {
+      "value": 61.6,
+      "ci_low": 59.7,
+      "ci_high": 63.3
+    },
+    "exact_match_lenient": {
+      "value": 61.9,
+      "ci_low": 60.1,
+      "ci_high": 63.6
+    },
+    "function_match": {
+      "value": 89.2,
+      "ci_low": 88.2,
+      "ci_high": 90.3
+    },
+    "argument_f1": {
+      "value": 80.1,
+      "ci_low": 79.0,
+      "ci_high": 81.2
+    },
+    "parse_valid": {
+      "value": 99.4,
+      "ci_low": 99.0,
+      "ci_high": 99.6
+    },
+    "schema_valid": {
+      "value": 96.4,
+      "ci_low": 95.7,
+      "ci_high": 97.1
+    },
+    "invented_tool": {
+      "value": 0.6,
+      "ci_low": 0.3,
+      "ci_high": 0.9
+    },
+    "invented_argument": {
+      "value": 2.0,
+      "ci_low": 1.5,
+      "ci_high": 2.5
+    }
+  },
+  "rule_floor_exact_match": 0.4,
+  "vs_rule_floor": {
+    "n_paired": 2929,
+    "a": 0.4,
+    "b": 61.6,
+    "fixed": 1801,
+    "broke": 10,
+    "both_correct": 3,
+    "both_wrong": 1115,
+    "mcnemar_p": 0.0
+  },
+  "breakdowns": {
+    "call_pattern": {
+      "single": {
+        "n": 1386,
+        "exact_match": 72.3
+      },
+      "multi_distinct_tools": {
+        "n": 936,
+        "exact_match": 51.7
+      },
+      "parallel_same_tool": {
+        "n": 530,
+        "exact_match": 55.5
+      },
+      "mixed": {
+        "n": 77,
+        "exact_match": 31.2
+      }
+    },
+    "calls_bucket": {
+      "1": {
+        "n": 1386,
+        "exact_match": 72.3
+      },
+      "2": {
+        "n": 1242,
+        "exact_match": 56.0
+      },
+      "3": {
+        "n": 231,
+        "exact_match": 38.1
+      },
+      "4+": {
+        "n": 70,
+        "exact_match": 27.1
+      }
+    },
+    "tools_bucket": {
+      "2-3": {
+        "n": 1238,
+        "exact_match": 61.4
+      },
+      "4+": {
+        "n": 961,
+        "exact_match": 62.2
+      },
+      "1": {
+        "n": 730,
+        "exact_match": 61.1
+      }
+    },
+    "arg_complexity": {
+      "scalar": {
+        "n": 2528,
+        "exact_match": 60.2
+      },
+      "structured": {
+        "n": 401,
+        "exact_match": 70.3
+      }
+    },
+    "has_optional": {
+      "yes": {
+        "n": 2462,
+        "exact_match": 58.6
+      },
+      "no": {
+        "n": 467,
+        "exact_match": 77.5
+      }
+    },
+    "template_twin": {
+      "novel": {
+        "n": 2582,
+        "exact_match": 59.0
+      },
+      "seen_template": {
+        "n": 347,
+        "exact_match": 81.0
+      }
+    }
+  },
+  "failure_mix": {
+    "correct": 61.6,
+    "parse_fail": 0.6,
+    "no_call_when_needed": 0.2,
+    "invented_tool": 0.6,
+    "wrong_call_count": 5.8,
+    "wrong_tool": 3.5,
+    "missing_required_arg": 0.3,
+    "unknown_arg": 1.2,
+    "wrong_value": 26.2
+  },
+  "generation": {
+    "avg_gen_tokens": 67.5,
+    "hit_max_tokens_pct": 0.1,
+    "latency_per_example_s": 0.947,
+    "peak_vram_gb": 2.08
+  },
+  "general_behaviour": {
+    "chat_as_tool_call_pct": 0.0,
+    "irrelevance_returns_empty_pct": 10.0
+  }
+}

@@ -1,0 +1,7 @@
+model,mode,parse_valid,schema_valid,function_match,exact_match,exact_match_lenient,latency_p50,prompt_tokens
+Gemma3-270M,few_shot,70.7,34.8,17.7,2.2,2.2,30.08,1064.1
+Gemma3-270M,zero_shot,75.7,43.1,19.9,0.6,0.6,31.32,547.1
+Qwen2.5-0.5B,few_shot,80.7,75.7,60.8,34.3,34.3,5.67,939.45
+Qwen2.5-0.5B,zero_shot,100.0,95.6,87.3,53.0,53.0,6.9,482.45
+SmolLM2-360M,few_shot,91.2,69.1,27.1,9.4,9.4,6.48,1037.0
+SmolLM2-360M,zero_shot,80.1,48.6,30.4,1.7,1.7,24.63,525.0

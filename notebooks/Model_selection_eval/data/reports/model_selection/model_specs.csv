@@ -1,0 +1,4 @@
+model,model_id,params_millions,context_length,dtype,peak_vram_gb,license,run_config
+SmolLM2-360M,HuggingFaceTB/SmolLM2-360M-Instruct,362,8192,torch.bfloat16,1.27,Apache-2.0,7bb5713461ed
+Qwen2.5-0.5B,Qwen/Qwen2.5-0.5B-Instruct,494,32768,torch.bfloat16,1.38,Apache-2.0,7bb5713461ed
+Gemma3-270M,google/gemma-3-270m-it,268,32768,torch.bfloat16,0.74,Gemma Terms of Use,7bb5713461ed
