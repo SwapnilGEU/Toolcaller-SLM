@@ -1,0 +1,25 @@
+{
+  "data": "data\\splits\\sft_val.jsonl",
+  "n_questions": 181,
+  "seed": 42,
+  "prompt_modes": [
+    "zero_shot",
+    "few_shot"
+  ],
+  "few_shot_ids": [
+    8594,
+    27657,
+    11594
+  ],
+  "max_new_tokens": 512,
+  "few_shot_exact_match": {
+    "Gemma3-270M": 2.2,
+    "Qwen2.5-0.5B": 34.3,
+    "SmolLM2-360M": 9.4
+  },
+  "zero_shot_exact_match": {
+    "Gemma3-270M": 0.6,
+    "Qwen2.5-0.5B": 53.0,
+    "SmolLM2-360M": 1.7
+  }
+}
