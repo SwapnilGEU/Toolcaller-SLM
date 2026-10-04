@@ -1,0 +1,101 @@
+# =====================================================================
+# SLM Finetuning — .gitignore
+# Rule of thumb: commit code, notebooks, small reports and the frozen
+# benchmark; never commit large data that the pipeline can regenerate,
+# model weights, or secrets.
+# =====================================================================
+
+# ---------------------------------------------------------------------
+# Data: large and regenerable from the raw HF dataset + notebooks
+# (patterns use **/ so they match every data/ copy, whichever folder
+#  a notebook lives in)
+# ---------------------------------------------------------------------
+**/data/raw/
+**/data/processed/
+**/data/splits/
+**/data/sft/
+**/data/dpo/
+
+# raw model generations (big) — the summaries next to them are kept
+**/data/eval/results/**/predictions.jsonl
+**/data/eval/results/**/general_*.jsonl
+**/data/eval/results/**/scored.csv
+**/data/eval/results/rule_floor_scored.csv
+**/data/reports/model_selection/*.jsonl
+**/data/reports/profile.csv
+
+# Kept on purpose (small, and needed to reproduce/verify results):
+#   data/eval/test_v1.jsonl, test_v1_1k.jsonl  -> the frozen benchmark
+#   data/eval/manifest.json                    -> its hashes
+#   data/eval/general_prompts_v1.jsonl         -> hand-written prompts
+#   data/eval/results/**/metrics.json          -> headline numbers
+#   data/reports/*.json, model_selection/*.csv/_spec.json/readme.md
+
+# ---------------------------------------------------------------------
+# Models, checkpoints, training outputs
+# ---------------------------------------------------------------------
+models/
+checkpoints/
+outputs/
+**/outputs/
+**/checkpoint-*/
+**/runs/
+lora_adapters/
+merged_model*/
+unsloth_compiled_cache/
+**/unsloth_compiled_cache/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.gguf
+*.onnx
+
+# ---------------------------------------------------------------------
+# Experiment tracking / tool caches
+# ---------------------------------------------------------------------
+wandb/
+mlruns/
+.deepeval/
+.langfuse/
+.cache/
+huggingface/
+
+# ---------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+
+# ---------------------------------------------------------------------
+# Jupyter
+# ---------------------------------------------------------------------
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# ---------------------------------------------------------------------
+# Environments & secrets (never commit tokens: HF_TOKEN, API keys)
+# ---------------------------------------------------------------------
+.env
+.env.*
+*.env
+.venv/
+venv/
+env/
+
+# ---------------------------------------------------------------------
+# OS / editor
+# ---------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
