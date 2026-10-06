@@ -3,7 +3,9 @@
 Defined once here so the EDA/cleaning, model-selection and later eval notebooks
 all judge tool calls with exactly the same rules.
 """
+import hashlib
 import json
+from pathlib import Path
 
 # --------------------------------------------------------------------- JSON
 
@@ -134,3 +136,26 @@ def call_pattern(answers):
     if len(set(names)) == len(names):
         return "multi_distinct_tools"
     return "mixed"
+
+
+# ------------------------------------------------------- file integrity
+
+
+def sha256_file(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def verify_hashes(folder, expected):
+    """Stop if any file changed since its hash was recorded.
+
+    `expected` is {filename: sha256} (sft_data_report.json) or
+    {filename: {"sha256": ...}} (eval manifest.json) - both work.
+    """
+    for name, info in expected.items():
+        want = info["sha256"] if isinstance(info, dict) else info
+        got = sha256_file(Path(folder) / name)
+        assert got == want, f"{name} changed since its hash was recorded - results would not be comparable."

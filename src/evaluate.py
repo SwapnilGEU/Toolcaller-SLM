@@ -271,3 +271,15 @@ def compare_runs(df_a, df_b, metric=HEADLINE, key="id"):
         "both_wrong": int((~a & ~b).sum()),
         "mcnemar_p": round(_mcnemar_exact_p(fixed, broke), 4),
     }
+
+
+GEN_FIELDS = ["response", "gen_tokens", "prompt_tokens", "hit_max_tokens", "latency_per_example"]
+
+
+def score_generations(generations, records_by_id, features_df=None):
+    """run_generation() output -> one scored row per question (+ features). Same table for base, SFT, DPO."""
+    df = pd.DataFrame([
+        {"id": rid, **{k: g[k] for k in GEN_FIELDS}, **score_prediction(g["response"], records_by_id[rid])}
+        for rid, g in generations.items()
+    ])
+    return df.merge(features_df, on="id") if features_df is not None else df
