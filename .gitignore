@@ -14,6 +14,7 @@
 **/data/processed/
 **/data/splits/
 **/data/sft/
+**/data/sft_v2/
 **/data/dpo/
 
 # raw model generations (big) — the summaries next to them are kept
