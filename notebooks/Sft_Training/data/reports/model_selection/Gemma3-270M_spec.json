@@ -1,0 +1,10 @@
+{
+  "model": "Gemma3-270M",
+  "model_id": "google/gemma-3-270m-it",
+  "params_millions": 268,
+  "context_length": 32768,
+  "dtype": "torch.bfloat16",
+  "peak_vram_gb": 0.74,
+  "license": "Gemma Terms of Use",
+  "run_config": "7bb5713461ed"
+}

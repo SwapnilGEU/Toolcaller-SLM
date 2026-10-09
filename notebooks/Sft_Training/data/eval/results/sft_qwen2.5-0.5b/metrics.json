@@ -1,0 +1,180 @@
+{
+  "run_name": "sft_qwen2.5-0.5b",
+  "run_config": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct + sft_qwen2.5-0.5b (merged LoRA)",
+    "benchmark": "test_v1",
+    "benchmark_sha256": "d5dc543e12d04caf3ace747bf81b1c7cdfc6d10adbb7e37eed77f309e95e734c",
+    "prompt_version": "v1",
+    "max_new_tokens": 512,
+    "decoding": "greedy"
+  },
+  "n": 2929,
+  "summary": {
+    "exact_match": {
+      "value": 78.0,
+      "ci_low": 76.5,
+      "ci_high": 79.4
+    },
+    "exact_match_lenient": {
+      "value": 78.0,
+      "ci_low": 76.5,
+      "ci_high": 79.4
+    },
+    "function_match": {
+      "value": 97.3,
+      "ci_low": 96.7,
+      "ci_high": 97.8
+    },
+    "argument_f1": {
+      "value": 90.3,
+      "ci_low": 89.5,
+      "ci_high": 91.1
+    },
+    "parse_valid": {
+      "value": 99.9,
+      "ci_low": 99.7,
+      "ci_high": 100.0
+    },
+    "schema_valid": {
+      "value": 99.4,
+      "ci_low": 99.0,
+      "ci_high": 99.6
+    },
+    "invented_tool": {
+      "value": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "invented_argument": {
+      "value": 0.3,
+      "ci_low": 0.1,
+      "ci_high": 0.5
+    }
+  },
+  "vs_base": {
+    "n_paired": 2929,
+    "a": 61.6,
+    "b": 78.0,
+    "fixed": 592,
+    "broke": 112,
+    "both_correct": 1692,
+    "both_wrong": 533,
+    "mcnemar_p": 0.0
+  },
+  "breakdowns": {
+    "call_pattern": {
+      "single": {
+        "n": 1386,
+        "exact_match": 81.8
+      },
+      "multi_distinct_tools": {
+        "n": 936,
+        "exact_match": 71.3
+      },
+      "parallel_same_tool": {
+        "n": 530,
+        "exact_match": 80.4
+      },
+      "mixed": {
+        "n": 77,
+        "exact_match": 74.0
+      }
+    },
+    "calls_bucket": {
+      "1": {
+        "n": 1386,
+        "exact_match": 81.8
+      },
+      "2": {
+        "n": 1242,
+        "exact_match": 74.9
+      },
+      "3": {
+        "n": 231,
+        "exact_match": 74.0
+      },
+      "4+": {
+        "n": 70,
+        "exact_match": 70.0
+      }
+    },
+    "tools_bucket": {
+      "2-3": {
+        "n": 1238,
+        "exact_match": 76.3
+      },
+      "4+": {
+        "n": 961,
+        "exact_match": 79.4
+      },
+      "1": {
+        "n": 730,
+        "exact_match": 79.0
+      }
+    },
+    "arg_complexity": {
+      "scalar": {
+        "n": 2528,
+        "exact_match": 77.0
+      },
+      "structured": {
+        "n": 401,
+        "exact_match": 84.3
+      }
+    },
+    "has_optional": {
+      "yes": {
+        "n": 2462,
+        "exact_match": 75.5
+      },
+      "no": {
+        "n": 467,
+        "exact_match": 90.8
+      }
+    },
+    "template_twin": {
+      "novel": {
+        "n": 2582,
+        "exact_match": 76.1
+      },
+      "seen_template": {
+        "n": 347,
+        "exact_match": 92.2
+      }
+    }
+  },
+  "failure_mix": {
+    "correct": 78.0,
+    "parse_fail": 0.1,
+    "wrong_call_count": 1.6,
+    "wrong_tool": 0.9,
+    "missing_required_arg": 0.2,
+    "unknown_arg": 0.2,
+    "wrong_value": 18.9
+  },
+  "generation": {
+    "avg_gen_tokens": 49.6,
+    "hit_max_tokens_pct": 0.1,
+    "latency_per_example_s": 0.659,
+    "peak_vram_gb": 2.09
+  },
+  "general_behaviour": {
+    "chat_as_tool_call_pct": 0.0,
+    "irrelevance_returns_empty_pct": 0.0
+  },
+  "training": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "max_seq_length": 1536,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "epochs": 1,
+    "effective_batch": 16,
+    "learning_rate": 0.0002,
+    "sft_data_files": {
+      "train.jsonl": "6da428a132960798e1ea81fea7c19dc4e663f999696175fa0c4fc9000cc14fad",
+      "val.jsonl": "d59e35c0df6a80521716601d3d5b51dbdad6f478e9013b3f02e67100090e5b23"
+    },
+    "adapter_dir": "c:\\Users\\Swapn\\OneDrive\\Documents\\GitHub\\SLM Finetuning\\notebooks\\outputs\\sft_qwen2.5-0.5b\\adapter",
+    "merged_dir": "c:\\Users\\Swapn\\OneDrive\\Documents\\GitHub\\SLM Finetuning\\notebooks\\outputs\\sft_qwen2.5-0.5b\\merged"
+  }
+}

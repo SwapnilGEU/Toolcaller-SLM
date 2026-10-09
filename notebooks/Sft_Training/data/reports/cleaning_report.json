@@ -1,0 +1,35 @@
+{
+  "raw_examples": 60000,
+  "clean_examples": 58620,
+  "retention_rate": 0.977,
+  "repaired_examples_identical_duplicate_tools": 3,
+  "dropped": {
+    "too_long": 201,
+    "hard_issue": 812,
+    "exact_duplicate": 367
+  },
+  "examples_per_issue": {
+    "missing_required": 558,
+    "conflicting_tool_definitions": 259,
+    "type_mismatch": 1245
+  },
+  "examples_with_soft_type_mismatch_kept": 1171,
+  "tokenizer": "Qwen/Qwen2.5-0.5B-Instruct",
+  "max_seq_len": 1280,
+  "split_seed": 42,
+  "split_sizes": {
+    "test": 2929,
+    "dpo_pool": 5863,
+    "sft_val": 1170,
+    "sft_train": 48658
+  },
+  "evidence": {
+    "naive_test_size": 3000,
+    "naive_test_query_seen_in_train": 133,
+    "naive_test_exact_copy_in_train": 26,
+    "naive_test_broken_labels": 38,
+    "naive_max_achievable_accuracy": 0.9873333333333333,
+    "our_test_query_seen_in_train": 0,
+    "our_test_broken_labels": 0
+  }
+}

@@ -100,3 +100,6 @@ desktop.ini
 .vscode/
 .idea/
 *.swp
+
+# llama.cpp converter (cloned by 06_export_ollama)
+third_party/
