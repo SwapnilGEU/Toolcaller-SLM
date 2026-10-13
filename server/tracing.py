@@ -10,6 +10,8 @@ How it fits together:
 
 If LANGFUSE_PUBLIC_KEY isn't set, the client is disabled and everything is a no-op,
 so the gateway still works without Langfuse running.
+
+Used LANGFUSE_HOST as cloud because of my RAM constraints.
 """
 import os
 
@@ -38,6 +40,12 @@ async def run_traced(agent, init_state: dict) -> tuple[dict, str | None]:
 
         trace_id = langfuse.get_current_trace_id() if ENABLED else None
     return state, trace_id
+
+
+def send_feedback(trace_id: str, good: bool, comment: str | None = None):
+    """Attach a human 👍/👎 to an existing trace. At DPO time: filter user_feedback = 0."""
+    langfuse.create_score(trace_id=trace_id, name="user_feedback", value=1 if good else 0,
+                          data_type="BOOLEAN", comment=comment)
 
 
 def flush():

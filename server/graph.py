@@ -26,7 +26,10 @@ import operator
 import time
 from typing import Annotated, Any, TypedDict, cast
 
-from langfuse.openai import AsyncOpenAI   # drop-in for openai.AsyncOpenAI that logs a "generation"
+try:
+    from langfuse.openai import AsyncOpenAI
+except ImportError:
+    from openai import AsyncOpenAI
 from langgraph.graph import END, START, StateGraph
 from openai.types.chat import ChatCompletionMessageParam
 

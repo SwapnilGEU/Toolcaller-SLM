@@ -14,12 +14,12 @@ except ImportError:
 
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
-from fastapi.responses import PlainTextResponse
+from fastapi import FastAPI, HTTPException, Response
+from fastapi.responses import PlainTextResponse, RedirectResponse
 from pydantic import BaseModel
 
 from server.graph import agent
-from server.tracing import ENABLED as TRACING, flush, run_traced
+from server.tracing import ENABLED as TRACING, flush, run_traced, send_feedback
 
 
 @asynccontextmanager
@@ -50,6 +50,24 @@ class ChatResponse(BaseModel):
     trace_id: str | None
 
 
+class FeedbackRequest(BaseModel):
+    trace_id: str
+    good: bool
+    comment: str | None = None
+
+
+# Browsers always ask for "/" and "/favicon.ico" when you open the server's address.
+# Those 404s were harmless noise; these two routes just silence them.
+@app.get("/", include_in_schema=False)
+async def root():
+    return RedirectResponse("/docs")
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return Response(status_code=204)      # 204 = "no content", the browser stops asking
+
+
 @app.get("/health")
 async def health():
     return {"status": "ok", "tracing": TRACING}
@@ -78,3 +96,11 @@ async def chat(req: ChatRequest):
         latency_ms=state["latency_ms"],
         trace_id=trace_id,
     )
+
+
+@app.post("/feedback")
+async def feedback(req: FeedbackRequest):
+    if not TRACING:
+        raise HTTPException(503, "Langfuse tracing is off (no LANGFUSE_PUBLIC_KEY), nowhere to store feedback")
+    send_feedback(req.trace_id, req.good, req.comment)
+    return {"ok": True}

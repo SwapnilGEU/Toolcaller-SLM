@@ -75,8 +75,10 @@ NUM = r"\d+(?:\.\d+)?"
 
 def _numbers(text: str) -> set[float]:
     nums = {float(n) for n in re.findall(NUM, text.replace(",", ""))}
-    # "15% of 2400" -> the model may write 0.15 * 2400
-    nums |= {float(n) / 100 for n in re.findall(rf"({NUM})\s*%", text.replace(",", ""))}
+    # "15% of 2400" -> the model may write 0.15 * 2400 or 15/100 * 2400
+    pcts = re.findall(rf"({NUM})\s*(?:%|percent)", text.replace(",", "").lower())
+    if pcts:
+        nums |= {float(n) / 100 for n in pcts} | {100.0}
     return nums
 
 

@@ -16,7 +16,9 @@ TOOL_SCHEMAS = [
      "parameters": {"amount": {"type": "float", "description": "Amount to convert"},
                     "from_currency": {"type": "str", "description": "3-letter source currency code, e.g. INR"},
                     "to_currency": {"type": "str", "description": "3-letter target currency code, e.g. USD"}}},
-    {"name": "calculate", "description": "Evaluate a basic arithmetic expression.",
+    {"name": "calculate",
+     "description": "Evaluate a basic arithmetic expression. For percentages write them as X/100, "
+                    "e.g. '15% of 2400' -> '15/100 * 2400'.",
      "parameters": {"expression": {"type": "str", "description": "Expression like '23 * 47'"}}},
     {"name": "send_email", "description": "Send an email to someone.",
      "parameters": {"to": {"type": "str", "description": "Recipient email address"},
