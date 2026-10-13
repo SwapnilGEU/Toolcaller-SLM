@@ -18,7 +18,14 @@ TOOL_SCHEMAS = [
                     "to_currency": {"type": "str", "description": "3-letter target currency code, e.g. USD"}}},
     {"name": "calculate", "description": "Evaluate a basic arithmetic expression.",
      "parameters": {"expression": {"type": "str", "description": "Expression like '23 * 47'"}}},
+    {"name": "send_email", "description": "Send an email to someone.",
+     "parameters": {"to": {"type": "str", "description": "Recipient email address"},
+                    "subject": {"type": "str", "description": "Email subject"},
+                    "body": {"type": "str", "description": "Email body"}}},
 ]
+
+# Tools with side effects: the gateway asks the user to confirm before running them.
+RISKY_TOOLS = {"send_email"}
 
 WEATHER_CODES = {0: "clear sky", 1: "mainly clear", 2: "partly cloudy", 3: "overcast", 45: "fog",
                  51: "light drizzle", 61: "light rain", 63: "rain", 65: "heavy rain",
@@ -75,4 +82,10 @@ async def calculate(expression: str) -> dict:
         return {"error": f"Can't evaluate '{expression}': {e}"}
 
 
-TOOL_FUNCS = {"get_weather": get_weather, "convert_currency": convert_currency, "calculate": calculate}
+async def send_email(to: str, subject: str = "", body: str = "") -> dict:
+    """Fake: nothing is actually sent. It exists to demo the confirmation guardrail."""
+    return {"status": "sent (simulated)", "subject": subject}
+
+
+TOOL_FUNCS = {"get_weather": get_weather, "convert_currency": convert_currency,
+              "calculate": calculate, "send_email": send_email}
