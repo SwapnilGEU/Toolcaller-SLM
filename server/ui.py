@@ -1,16 +1,19 @@
 """Gradio demo UI. It only talks to the gateway over HTTP, so everything the UI does
 goes through the guardrails and shows up in Langfuse.
 
-Run (gateway must be running on :9000):
+Run (gateway must be running):
     python -m server.ui        ->  http://localhost:7860
+If the gateway isn't on port 9000 (Windows sometimes reserves it), point the UI at it:
+    set GATEWAY_URL=http://localhost:8100      (cmd)   |   $env:GATEWAY_URL="http://localhost:8100"  (PowerShell)
 """
 import inspect
 import json
+import os
 
 import gradio as gr
 import httpx
 
-GATEWAY = "http://localhost:9000"
+GATEWAY = os.getenv("GATEWAY_URL", "http://localhost:8100")
 
 EXAMPLES = [
     "What's the weather in Prayagraj?",
@@ -52,7 +55,7 @@ async def chat(message, history, backend, confirm):
         return history, details_md(d), d.get("trace_id"), "", ""
     except Exception as e:
         history.append({"role": "assistant", "content": f"⚠️ Gateway error: {e}"})
-        return history, "Is the gateway running on :9000 (and vLLM in WSL)?", None, "", ""
+        return history, f"Is the gateway running at {GATEWAY} (and vLLM in WSL)?", None, "", ""
 
 
 async def feedback(trace_id, good):
