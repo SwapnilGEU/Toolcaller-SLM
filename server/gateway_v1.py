@@ -23,7 +23,7 @@ from src.prompts import build_messages
 from server.tools import TOOL_FUNCS, TOOL_SCHEMAS
 
 BACKENDS = {"vllm": ("http://localhost:8000/v1", "sft-toolcaller"),
-            "ollama": ("http://localhost:11434/v1", "qwen2.5-0.5b-instruct-fc")}
+            "ollama": ("http://localhost:11434/v1", "qwen2.5_0.5b-instruct-fc-Chat")}
 
 app = FastAPI(title="SLM Tool-Calling Gateway")
 
