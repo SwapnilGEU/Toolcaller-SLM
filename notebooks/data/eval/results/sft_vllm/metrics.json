@@ -1,0 +1,16 @@
+{
+  "run": "sft",
+  "model": "sft-toolcaller",
+  "decoding": "greedy (vLLM)",
+  "abstain_set_sha256": "4388990228e8",
+  "test_exact_match": 81.4,
+  "test_function_match": 97.3,
+  "test_argument_f1": 91.8,
+  "test_over_abstain": 0.0,
+  "abstain_rate": 0.0,
+  "abstain_rate_by_kind": {
+    "removed": 0.0,
+    "swapped": 0.0
+  },
+  "general_irrelevant_abstain": 0.0
+}
