@@ -103,3 +103,15 @@ desktop.ini
 
 # llama.cpp converter (cloned by 06_export_ollama)
 third_party/
+
+# ---------------------------------------------------------------------
+# Prototype / backup notebooks: kept locally, not part of the published pipeline
+# ---------------------------------------------------------------------
+**/*backup*.ipynb
+**/prototype_*.ipynb
+**/DPO1*.ipynb
+**/*_v2_original.ipynb
+**/Training_SFT*.ipynb
+
+# smoke-test runs (tiny dry runs of the real notebooks)
+**/*_smoke/

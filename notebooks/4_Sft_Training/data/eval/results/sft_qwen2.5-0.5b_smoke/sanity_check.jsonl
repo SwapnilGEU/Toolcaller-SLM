@@ -1,1 +1,0 @@
-{"id": 5, "response": "[{\"name\": \"product_id\", \"arguments\": {\"is_id\": 456789, \"locale\": \"es_ES\"}}]", "gen_tokens": 31, "prompt_tokens": 441, "hit_max_tokens": 0, "latency_per_example": 3.655500100001518, "batch_size": 1, "run_config": "0b93c5789cca"}
