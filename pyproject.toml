@@ -1,0 +1,19 @@
+[project]
+name = "toolcaller-slm"
+version = "1.0.0"
+description = "A 0.5B function-calling model that knows when NOT to call a tool (QLoRA SFT + DPO on Qwen2.5)."
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+extend-exclude = ["notebooks", "third_party"]
+
+[tool.ruff.lint]
+select = ["E", "F"]       # real errors only: syntax, undefined names, unused imports
+ignore = ["E501"]

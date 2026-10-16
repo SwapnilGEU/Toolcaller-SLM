@@ -1,0 +1,7 @@
+*
+!requirements-serve.txt
+!src/
+!serverv2/
+**/__pycache__
+src/generation.py
+src/generate_cli.py

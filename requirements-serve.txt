@@ -1,0 +1,11 @@
+# Gateway runtime (serverv2/ + the src/ modules it imports). No torch: the model runs in vLLM/Ollama.
+fastapi>=0.110
+uvicorn[standard]>=0.29
+httpx>=0.27
+pydantic>=2.5
+langgraph>=0.2
+langfuse>=3,<6
+openai>=1.40
+python-dotenv>=1.0
+numpy>=1.26
+pandas>=2.1

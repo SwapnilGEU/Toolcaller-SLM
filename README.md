@@ -1,5 +1,7 @@
 # Toolcaller-SLM
 
+[![CI/CD](https://github.com/SwapnilGEU/Toolcaller-SLM/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/SwapnilGEU/Toolcaller-SLM/actions/workflows/ci-cd.yml)
+
 **A 0.5B function-calling model that knows when *not* to call a tool.**
 
 Small models fine-tuned for tool use learn one bad habit: *always call something*. Ask for a joke with only a weather API available, and you get the weather for New York. This project fine-tunes **Qwen2.5-0.5B-Instruct** on [xLAM-60k](https://huggingface.co/datasets/Salesforce/xlam-function-calling-60k) with **QLoRA SFT, then DPO**. The result is a model small enough for a laptop GPU that:
@@ -95,6 +97,25 @@ python -m serverv2.ui                    # optional chat UI
 
 **Feedback loop:** every answer in the UI has 👍 / 👎 buttons. A click is saved as a score on that request's Langfuse trace, next to the guardrail and schema-validity scores the gateway logs automatically. Filtering traces by 👎 or failed checks gives real-world mistakes. Paired with a corrected answer, they become new preference pairs for the next DPO round.
 
+## CI/CD
+
+| Workflow | Trigger | What it does |
+|---|---|---|
+| `ci-cd.yml` | every push / PR | **Lint** (ruff) → **48 tests** on Python 3.10–3.12 → **repo hygiene** (no weights, `.env`, tokens or files >10 MB) → **Docker build + container health check** → on `main`/tags, **push the gateway image to GHCR** |
+| `model-eval.yml` | manual / on release | Pulls the published model from HF and runs a **CPU smoke eval** with the same prompt, generation and scorer as the notebooks. Fails if exact match or abstention drops below 65% or "Tell me a joke" triggers a tool. |
+
+What the tests cover:
+- the scorer that produced every number above
+- the frozen prompt (a hash check, so results stay comparable)
+- abstention-data generation
+- the guardrails (injection, PII, hallucinated arguments)
+- the full LangGraph gateway with a fake model, so no GPU is needed
+
+```bash
+pip install -r requirements-dev.txt && pytest       # run locally
+docker run -p 8100:8100 -e VLLM_URL=http://host.docker.internal:8000/v1 ghcr.io/swapnilgeu/toolcaller-slm-gateway
+```
+
 ## Repo layout
 
 | Folder | Contents |
@@ -103,6 +124,7 @@ python -m serverv2.ui                    # optional chat UI
 | [`src/`](src) | Shared prompt, generation and scoring code, so every model is judged identically |
 | [`server/`](server) | v1 gateway: tool calls only (SFT model) |
 | [`serverv2/`](serverv2) | v2 gateway: tool calls + general-chat fallback (DPO model) |
+| [`tests/`](tests) · `scripts/` | Test suite, model smoke eval, repo hygiene check |
 | `assets/` | README figures |
 
 Model weights, raw/processed data and checkpoints are git-ignored. Rebuild them with the notebooks or pull the models from HF/Ollama.

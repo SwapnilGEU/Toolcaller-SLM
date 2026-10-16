@@ -1,0 +1,4 @@
+# CPU smoke eval of the published model (install torch from the CPU index first, see model-eval.yml)
+transformers>=4.45
+numpy>=1.26
+pandas>=2.1
