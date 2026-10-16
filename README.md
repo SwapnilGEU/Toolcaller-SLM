@@ -93,6 +93,8 @@ python -m serverv2.ui                    # optional chat UI
 
 `serverv2` sends each request to the model with the tool schema. If the model returns `[]`, the gateway answers it as normal chat. Every response carries a `mode` field (`tool` or `chat`). See [`serverv2/README.md`](serverv2/README.md).
 
+**Feedback loop:** every answer in the UI has 👍 / 👎 buttons. A click is saved as a score on that request's Langfuse trace, next to the guardrail and schema-validity scores the gateway logs automatically. Filtering traces by 👎 or failed checks gives real-world mistakes. Paired with a corrected answer, they become new preference pairs for the next DPO round.
+
 ## Repo layout
 
 | Folder | Contents |
