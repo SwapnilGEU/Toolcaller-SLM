@@ -136,6 +136,3 @@ Model weights, raw/processed data and checkpoints are git-ignored. Rebuild them 
 - test_v1 mostly contains tool families seen in training, so generalization to unseen APIs isn't measured.
 - vLLM eval numbers (`07_eval_vllm`) come from a separate stack and aren't mixed with the table above.
 
-## Stack
-
-Unsloth · TRL (SFT/DPO) · PEFT · Transformers · vLLM · llama.cpp/GGUF · Ollama · LangGraph · FastAPI · Langfuse
