@@ -6,7 +6,7 @@ The only behaviour change: requests where no tool fits now get a **normal chat a
 
 ## Why this works now
 - The SFT model never returned `[]`: "Tell me a joke" became `get_weather(New York)`.
-- The DPO model returns `[]` when no tool fits (82% on 300 frozen questions, notebook 10),
+- The DPO model returns `[]` when no tool fits (82% on 300 frozen questions, `09_eval_base_sft_dpo`),
   so `[]` is a reliable signal for "this is chat, not a tool request".
 - In plain chat (no tool system prompt) it answers in text: 0% tool-JSON leakage on 50 prompts.
 

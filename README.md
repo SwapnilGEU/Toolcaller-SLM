@@ -1,13 +1,20 @@
 # Toolcaller-SLM
 
-**A 0.5B model that calls tools accurately and knows when *not* to.**
+**A 0.5B function-calling model that knows when *not* to call a tool.**
 
-Qwen2.5-0.5B-Instruct fine-tuned for function calling on [xLAM-60k](https://huggingface.co/datasets/Salesforce/xlam-function-calling-60k): QLoRA SFT, then DPO to teach abstention. The model is served through vLLM or Ollama behind a LangGraph gateway that falls back to general chat.
+Small models fine-tuned for tool use learn one bad habit: *always call something*. Ask for a joke with only a weather API available, and you get the weather for New York. This project fine-tunes **Qwen2.5-0.5B-Instruct** on [xLAM-60k](https://huggingface.co/datasets/Salesforce/xlam-function-calling-60k) with **QLoRA SFT, then DPO**. The result is a model small enough for a laptop GPU that:
+
+- gets tool calls exactly right **80%** of the time (base model: 61.6%)
+- declines out-of-scope requests **82%** of the time (the SFT model: 0%)
+
+It ships end to end. You can pull it from Hugging Face or Ollama, serve it with vLLM, and run it behind a guarded LangGraph gateway that hands non-tool requests to normal chat.
 
 | | |
 |---|---|
 | 🤗 Hugging Face | [SwapniL-pr1117/qwen2.5-0.5b-instructv2-fc](https://huggingface.co/SwapniL-pr1117/qwen2.5-0.5b-instructv2-fc) |
 | 🦙 Ollama | `ollama run Avahan/qwen2.5_0.5b-instruct-fc-Chat` (tags `:sft`, `:dpo`, `:latest`) |
+
+![Gateway UI](assets/ui.png)
 
 ## Results
 
@@ -32,6 +39,27 @@ Greedy decoding, HF transformers bf16, same prompts for all three models.
 |---|---|
 | Base / SFT | `[{"name": "get_weather", "arguments": {"location": "New York"}}]` ❌ |
 | DPO | `[]` ✅ → the gateway routes the request to general chat |
+
+## Data & model selection
+
+**Cleaning.** xLAM-60k looks clean but isn't:
+- 812 examples have broken labels (missing required args, type mismatches, conflicting tool definitions)
+- 367 are exact duplicates
+- a naive random test split leaks 133 queries into training and caps achievable accuracy at 98.7%
+
+The cleaning step drops the bad rows and builds a split with **0 leaked queries and 0 broken test labels**. A separate DPO pool is held out so preference data never touches SFT data.
+
+![Data cleaning](assets/data_cleaning.png)
+
+**Model selection.** Three sub-500M instruct models were tested zero-shot on 181 validation questions. Qwen2.5-0.5B was the only usable starting point. Few-shot prompting *hurt* every model (Qwen: 53 → 34% exact match), so all later work is zero-shot.
+
+![Model selection](assets/model_selection.png)
+
+| Model | Params | Exact match | Function match | Schema valid | p50 latency |
+|---|---:|---:|---:|---:|---:|
+| **Qwen2.5-0.5B** | 494M | **53.0** | **87.3** | **95.6** | **6.9 s** |
+| SmolLM2-360M | 362M | 1.7 | 30.4 | 48.6 | 24.6 s |
+| Gemma3-270M | 268M | 0.6 | 19.9 | 43.1 | 31.3 s |
 
 ## Pipeline
 
@@ -67,13 +95,13 @@ python -m serverv2.ui                    # optional chat UI
 
 ## Repo layout
 
-```
-notebooks/   numbered pipeline stages (1–6), each with its data/ and outputs/
-src/         shared code: prompts, generation, evaluation, abstention scoring
-server/      v1 gateway (tool calls only)
-serverv2/    v2 gateway (tool calls + general-chat fallback)
-assets/      README figures
-```
+| Folder | Contents |
+|---|---|
+| [`notebooks/`](notebooks) | Numbered pipeline stages 1–6, each with its own `data/` and `outputs/` |
+| [`src/`](src) | Shared prompt, generation and scoring code, so every model is judged identically |
+| [`server/`](server) | v1 gateway: tool calls only (SFT model) |
+| [`serverv2/`](serverv2) | v2 gateway: tool calls + general-chat fallback (DPO model) |
+| `assets/` | README figures |
 
 Model weights, raw/processed data and checkpoints are git-ignored. Rebuild them with the notebooks or pull the models from HF/Ollama.
 
