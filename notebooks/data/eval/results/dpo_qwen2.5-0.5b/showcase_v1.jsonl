@@ -1,0 +1,4 @@
+{"id": "joke", "response": "[]", "gen_tokens": 1, "prompt_tokens": 202, "hit_max_tokens": 0, "latency_per_example": 0.8201170249999947, "batch_size": 4, "run_config": "e1119b5c92a3"}
+{"id": "abst_44256", "response": "[]", "gen_tokens": 1, "prompt_tokens": 259, "hit_max_tokens": 0, "latency_per_example": 0.8201170249999947, "batch_size": 4, "run_config": "e1119b5c92a3"}
+{"id": "abst_2556", "response": "[]", "gen_tokens": 1, "prompt_tokens": 365, "hit_max_tokens": 0, "latency_per_example": 0.8201170249999947, "batch_size": 4, "run_config": "e1119b5c92a3"}
+{"id": 5, "response": "[{\"name\": \"product_id\", \"arguments\": {\"is_id\": 456789, \"locale\": \"es_ES\"}}]", "gen_tokens": 31, "prompt_tokens": 441, "hit_max_tokens": 0, "latency_per_example": 0.8201170249999947, "batch_size": 4, "run_config": "e1119b5c92a3"}

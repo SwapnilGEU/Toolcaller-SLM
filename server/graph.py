@@ -41,7 +41,7 @@ from src.evaluate import extract_json
 from src.prompts import build_messages
 
 BACKENDS = {
-    "vllm": ("http://localhost:8000/v1", "sft-toolcaller"),
+    "vllm": ("http://localhost:8000/v1", "dpo-toolcaller"),
     "ollama": ("http://localhost:11434/v1", "qwen2.5_0.5b-instruct-fc-Chat"),
 }
 CLIENTS = {name: AsyncOpenAI(base_url=url, api_key="none") for name, (url, _) in BACKENDS.items()}

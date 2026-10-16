@@ -1,0 +1,30 @@
+{
+  "headline": {
+    "base": {
+      "Exact match, test_v1 (%) \u2191": 61.6,
+      "Function match (%) \u2191": 89.2,
+      "Argument F1 (%) \u2191": 80.1,
+      "Abstain when no tool fits, abstain_v1 (%) \u2191": 23.3,
+      "Over-abstain on test_v1 (%) \u2193": 0.17,
+      "Chat answered as tool JSON (%) \u2193": 0.0
+    },
+    "sft": {
+      "Exact match, test_v1 (%) \u2191": 78.0,
+      "Function match (%) \u2191": 97.3,
+      "Argument F1 (%) \u2191": 90.3,
+      "Abstain when no tool fits, abstain_v1 (%) \u2191": 0.0,
+      "Over-abstain on test_v1 (%) \u2193": 0.0,
+      "Chat answered as tool JSON (%) \u2193": 0.0
+    },
+    "dpo": {
+      "Exact match, test_v1 (%) \u2191": 80.0,
+      "Function match (%) \u2191": 96.8,
+      "Argument F1 (%) \u2191": 91.2,
+      "Abstain when no tool fits, abstain_v1 (%) \u2191": 82.3,
+      "Over-abstain on test_v1 (%) \u2193": 0.2,
+      "Chat answered as tool JSON (%) \u2193": 0.0
+    }
+  },
+  "markdown": "| Metric | Base | SFT | DPO |\n|---|---|---|---|\n| Exact match, test_v1 (%) \u2191 | 61.6 | 78.0 | 80.0 |\n| Function match (%) \u2191 | 89.2 | 97.3 | 96.8 |\n| Argument F1 (%) \u2191 | 80.1 | 90.3 | 91.2 |\n| Abstain when no tool fits, abstain_v1 (%) \u2191 | 23.3 | 0.0 | 82.3 |\n| Over-abstain on test_v1 (%) \u2193 | 0.2 | 0.0 | 0.2 |\n| Chat answered as tool JSON (%) \u2193 | 0.0 | 0.0 | 0.0 |",
+  "chart": "c:\\Users\\Swapn\\OneDrive\\Documents\\GitHub\\SLM Finetuning\\notebooks\\data\\eval\\results\\dpo_qwen2.5-0.5b\\base_sft_dpo.png"
+}
