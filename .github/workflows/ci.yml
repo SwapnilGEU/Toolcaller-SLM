@@ -1,0 +1,55 @@
+# Release gate for the MODEL: pull the published checkpoint from the HF Hub and run a CPU
+# smoke eval with the same prompt, generation and scorer as the notebooks.
+# Fails if exact match / abstention drop below the thresholds or "Tell me a joke" triggers a tool.
+name: Model smoke eval
+
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: HF model id
+        default: SwapniL-pr1117/qwen2.5-0.5b-instructv2-fc
+      n:
+        description: Questions per eval set
+        default: "40"
+      min_exact:
+        description: Min exact match (%)
+        default: "65"
+      min_abstain:
+        description: Min abstention (%)
+        default: "65"
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}       # only needed if the HF repo is private
+      MODEL: ${{ inputs.model || 'SwapniL-pr1117/qwen2.5-0.5b-instructv2-fc' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-eval.txt
+      - name: Install CPU torch + transformers
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements-eval.txt
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-${{ env.MODEL }}
+      - name: Smoke eval
+        run: >
+          python scripts/model_smoke_eval.py
+          --model "$MODEL"
+          --n ${{ inputs.n || 40 }}
+          --min-exact ${{ inputs.min_exact || 65 }}
+          --min-abstain ${{ inputs.min_abstain || 65 }}
