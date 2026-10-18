@@ -1,6 +1,5 @@
 # Toolcaller-SLM
 
-[![CI/CD](https://github.com/SwapnilGEU/Toolcaller-SLM/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/SwapnilGEU/Toolcaller-SLM/actions/workflows/ci_cd.yml)
 
 **A 0.5B function-calling model that knows when *not* to call a tool.**
 
