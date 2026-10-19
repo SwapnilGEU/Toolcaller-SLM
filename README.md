@@ -1,8 +1,34 @@
-# Toolcaller-SLM
+<div align="center">
 
-[![CI/CD](https://github.com/SwapnilGEU/Toolcaller-SLM/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/SwapnilGEU/Toolcaller-SLM/actions/workflows/ci_cd.yml)
+<h1>Toolcaller-SLM</h1>
 
-**A 0.5B function-calling model that knows when *not* to call a tool.**
+<p>A 0.5B function-calling model that knows when <i>not</i> to call a tool.</p>
+
+<sub>xLAM-60k → QLoRA SFT → DPO → GGUF / vLLM → guarded LangGraph gateway with chat fallback</sub>
+
+<br><br>
+
+<img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white">
+<img alt="Qwen2.5" src="https://img.shields.io/badge/Qwen2.5-0.5B-615CED">
+<img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=white">
+<img alt="Unsloth" src="https://img.shields.io/badge/Unsloth-QLoRA-0F9D58">
+<img alt="TRL" src="https://img.shields.io/badge/%F0%9F%A4%97%20TRL-SFT%20%C2%B7%20DPO-FFB000">
+<img alt="vLLM" src="https://img.shields.io/badge/vLLM-serving-30A2FF">
+<img alt="Ollama" src="https://img.shields.io/badge/Ollama-GGUF%20q8__0-000000?logo=ollama&logoColor=white">
+<img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white">
+<img alt="LangGraph" src="https://img.shields.io/badge/LangGraph-gateway-1C3C3C?logo=langchain&logoColor=white">
+<img alt="Langfuse" src="https://img.shields.io/badge/Langfuse-tracing-E11312">
+<img alt="Gradio" src="https://img.shields.io/badge/Gradio-UI-F97316?logo=gradio&logoColor=white">
+<img alt="Docker" src="https://img.shields.io/badge/Docker-GHCR-2496ED?logo=docker&logoColor=white">
+
+<br>
+
+<a href="https://github.com/SwapnilGEU/Toolcaller-SLM/actions/workflows/ci_cd.yml"><img alt="CI/CD" src="https://github.com/SwapnilGEU/Toolcaller-SLM/actions/workflows/ci_cd.yml/badge.svg"></a>
+<a href="https://huggingface.co/SwapniL-pr1117/qwen2.5-0.5b-instructv2-fc"><img alt="Hugging Face" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-model-FFD21E"></a>
+
+</div>
+
+---
 
 Small models fine-tuned for tool use learn one bad habit: *always call something*. Ask for a joke with only a weather API available, and you get the weather for New York. This project fine-tunes **Qwen2.5-0.5B-Instruct** on [xLAM-60k](https://huggingface.co/datasets/Salesforce/xlam-function-calling-60k) with **QLoRA SFT, then DPO**. The result is a model small enough for a laptop GPU that:
 
