@@ -1,11 +1,7 @@
 <div align="center">
 
 <h1>Toolcaller-SLM</h1>
-=======
-<p>A 0.5B function-calling model that knows when <i>not</i> to call a tool.</p>
-
 <br><br>
-
 <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white">
 <img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=white">
 <img alt="Unsloth" src="https://img.shields.io/badge/Unsloth-QLoRA-0F9D58">
