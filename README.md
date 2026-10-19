@@ -1,6 +1,9 @@
 <div align="center">
 
+<<<<<<< HEAD
 <h1>Toolcaller-SLM</h1>
+=======
+>>>>>>> 6d389ea3712860b778ae6ad6a30fffa22d3f3bbf
 
 <p>A 0.5B function-calling model that knows when <i>not</i> to call a tool.</p>
 
@@ -162,6 +165,3 @@ Model weights, raw/processed data and checkpoints are git-ignored. Rebuild them 
 - test_v1 mostly contains tool families seen in training, so generalization to unseen APIs isn't measured.
 - vLLM eval numbers (`07_eval_vllm`) come from a separate stack and aren't mixed with the table above.
 
-## Stack
-
-Unsloth · TRL (SFT/DPO) · PEFT · Transformers · vLLM · llama.cpp/GGUF · Ollama · LangGraph · FastAPI · Langfuse
