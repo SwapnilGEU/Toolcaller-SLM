@@ -1,28 +1,20 @@
 <div align="center">
 
-<<<<<<< HEAD
 <h1>Toolcaller-SLM</h1>
 =======
->>>>>>> 6d389ea3712860b778ae6ad6a30fffa22d3f3bbf
-
 <p>A 0.5B function-calling model that knows when <i>not</i> to call a tool.</p>
-
-<sub>xLAM-60k → QLoRA SFT → DPO → GGUF / vLLM → guarded LangGraph gateway with chat fallback</sub>
 
 <br><br>
 
 <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white">
-<img alt="Qwen2.5" src="https://img.shields.io/badge/Qwen2.5-0.5B-615CED">
 <img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=white">
 <img alt="Unsloth" src="https://img.shields.io/badge/Unsloth-QLoRA-0F9D58">
 <img alt="TRL" src="https://img.shields.io/badge/%F0%9F%A4%97%20TRL-SFT%20%C2%B7%20DPO-FFB000">
 <img alt="vLLM" src="https://img.shields.io/badge/vLLM-serving-30A2FF">
 <img alt="Ollama" src="https://img.shields.io/badge/Ollama-GGUF%20q8__0-000000?logo=ollama&logoColor=white">
-<img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white">
 <img alt="LangGraph" src="https://img.shields.io/badge/LangGraph-gateway-1C3C3C?logo=langchain&logoColor=white">
 <img alt="Langfuse" src="https://img.shields.io/badge/Langfuse-tracing-E11312">
 <img alt="Gradio" src="https://img.shields.io/badge/Gradio-UI-F97316?logo=gradio&logoColor=white">
-<img alt="Docker" src="https://img.shields.io/badge/Docker-GHCR-2496ED?logo=docker&logoColor=white">
 
 <br>
 
