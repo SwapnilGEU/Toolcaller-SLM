@@ -18,9 +18,6 @@
 
 <br>
 
-<a href="https://github.com/SwapnilGEU/Toolcaller-SLM/actions/workflows/ci_cd.yml"><img alt="CI/CD" src="https://github.com/SwapnilGEU/Toolcaller-SLM/actions/workflows/ci_cd.yml/badge.svg"></a>
-<a href="https://huggingface.co/SwapniL-pr1117/qwen2.5-0.5b-instructv2-fc"><img alt="Hugging Face" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-model-FFD21E"></a>
-
 </div>
 
 ---
